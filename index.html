@@ -334,7 +334,7 @@
             <li><a class="current" href="/">Home</a></li>
             <li><a href="/#about">About Us</a></li>
             <li><a href="/#services">Services</a></li>
-            <li><a href="/contacts">Contacts</a></li>
+            <li><a href="/contacts.html">Contacts</a></li>
         </ul>
     </div>
 
@@ -351,14 +351,25 @@
         AOS.init();
     </script>
     <script>
-        const menuBtn = document.querySelector(".menu-btn")
-        const icon = document.querySelector(".menu-btn span")
-        const mobileNav = document.querySelector(".nav-bar")
+        const menuBtn = document.querySelector(".menu-btn");
+        const icon = document.querySelector(".menu-btn span");
+        const mobileNav = document.querySelector(".nav-bar");
 
-        menuBtn.addEventListener("click", () => {
-            mobileNav.classList.toggle("active")
-                (mobileNav.classList.contains("active") ? icon.textContent = "close" : icon.textContent = "menu")
-        })
+        menuBtn.addEventListener("click", (event) => {
+            mobileNav.classList.toggle("active");
+            mobileNav.classList.contains("active") ? (icon.textContent = "close") : (icon.textContent = "menu");
+            event.stopPropagation(); // Prevents the event from reaching the document and closing the menu immediately
+        });
+
+        // Add event listener to close the menu when clicking outside
+        document.addEventListener("click", (event) => {
+            const isClickInsideNav = mobileNav.contains(event.target);
+            const isClickInsideMenuBtn = menuBtn.contains(event.target);
+            if (!isClickInsideNav && !isClickInsideMenuBtn && mobileNav.classList.contains("active")) {
+                mobileNav.classList.remove("active");
+                icon.textContent = "menu";
+            }
+        });
     </script>
 
 </body>

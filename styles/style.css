@@ -106,6 +106,7 @@ header {
     height: 80px;
     position: fixed;
     inset: 0;
+    top: 0;
     width: 100%;
     backdrop-filter: blur(1px);
     transition: .3s;
@@ -114,6 +115,7 @@ header {
 
 .alt-header {
     background-color: var(--dark);
+    top: 0;
 }
 
 header.scoll-header {
@@ -586,6 +588,22 @@ footer p {
     margin: 2em auto;
 }
 
+/* contact-container */
+.contact-container{
+    margin: 100px auto 3em;
+    padding: 2em;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .05);
+}
+.contact-container button{
+    padding: .75rem;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-radius: .5rem;
+}
+.contact-container input,
+.contact-container textarea{
+    border-radius: .5rem;
+}
 
 
 

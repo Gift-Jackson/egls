@@ -18,31 +18,17 @@ search.addEventListener("input", () => {
 function displayBooks(books) {
     const booksHTML = books
         .map((book) => {
-            const img = book.volumeInfo.imageLinks
-                ? book.volumeInfo.imageLinks.smallThumbnail
-                : "No Image";
-            const title = book.volumeInfo.title;
-            const publishedDate = book.volumeInfo.publishedDate || "No Date Available";
-            const author = book.volumeInfo.authors
-                ? book.volumeInfo.authors[0]
-                : "Unknown Author";
-            const categories = book.volumeInfo.categories
-                ? book.volumeInfo.categories[0]
-                : "Unknown Categories";
-            const publisher = book.volumeInfo.publisher
-                ? book.volumeInfo.publisher[0]
-                : "Unknown Publisher";
-            const description = book.volumeInfo.description || "No Description Available";
+            const id = book.id; // Unique ID of the book
 
-            return `<div class="book" data-aos="zoom-in" data-aos-delay="300">
+            return `<div class="book" id="${id}" data-aos="zoom-in" data-aos-delay="300">
                      <div class="book-cover">
-                        <img src="${img}" alt="${title}">
+                        <img src="${book.volumeInfo.imageLinks?.smallThumbnail || 'No Image'}" alt="${book.volumeInfo.title}">
                     </div>                    
                     <div class="book-body">
-                        <h3>${title}</h3>
-                        <p class="author"><i>${author}</i></p>
+                        <h3>${book.volumeInfo.title}</h3>
+                        <p class="author"><i>${book.volumeInfo.authors?.[0] || 'Unknown Author'}</i></p>
                     </div>
-                    <button class="add-cart-btn" onclick="viewBook('${title}', '${author}', '${img}', '${description}', '${publishedDate}', '${categories}', '${publisher}')">
+                    <button class="add-cart-btn" onclick="viewBook('${id}')">
                         <span>See details <i class="fa-regular fa-hand"></i></span>
                     </button>
                 </div>`;
@@ -52,17 +38,25 @@ function displayBooks(books) {
     booksResult.innerHTML = booksHTML;
 }
 
-function viewBook(title, author, img, description, publishedDate, categories, publisher) {
-    const bookInfo = {
-        title: title,
-        author: author,
-        img: img,
-        description: description,
-        publishedDate: publishedDate,
-        categories: categories,
-        publisher: publisher,
-    };
 
-    localStorage.setItem("viewedBook", JSON.stringify(bookInfo));
-    window.location.href = "view_book.html";
+function viewBook(id) {
+    fetch(`https://www.googleapis.com/books/v1/volumes/${id}`)
+        .then((res) => res.json())
+        .then((book) => {
+            const bookInfo = {
+                id: book.id,
+                title: book.volumeInfo.title,
+                author: book.volumeInfo.authors?.[0] || 'Unknown Author',
+                img: book.volumeInfo.imageLinks?.smallThumbnail || 'No Image',
+                description: book.volumeInfo.description || 'No Description Available',
+                publishedDate: book.volumeInfo.publishedDate || 'No Date Available',
+                categories: book.volumeInfo.categories?.[0] || 'Unknown Categories',
+                publisher: book.volumeInfo.publisher || 'Unknown Publisher',
+            };
+
+            localStorage.setItem("viewedBook", JSON.stringify(bookInfo));
+            window.location.href = "view_book.html";
+        })
+        .catch((error) => console.log(error));
 }
+

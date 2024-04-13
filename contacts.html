@@ -72,20 +72,43 @@
     <!-- End of header -->
 
     <main>
-        <div class="success-container">
-            <div class="success-content">
-                <div class="success-icon">
-                    <span class="material-symbols-outlined">task_alt</span>
+        <div class="contact-container light-bg">
+            <div class="title" data-aos="fade-up" data-aos-delay="300">
+                <h2>Contact Us</h2>
+                <p>Lorem ipsum dolor sit amet consectetur.</p>
+            </div>
+            <div class="flex-container">
+                <div class="flex-box" data-aos="fade-up" data-aos-delay="300">
+                    <form action="">
+                        <div class="input-control">
+                            <label for="name">Full Name:</label>
+                            <input type="text" name="name" id="name" placeholder="Your Full Name..." required />
+                        </div>
+                        <div class="input-control">
+                            <label for="email">E-mail Address:</label>
+                            <input type="email" name="email" id="email" placeholder="example@domain.com" required />
+                        </div>
+                        <div class="input-control">
+                            <label for="message">Message:</label>
+                            <textarea name="message" id="message" cols="30" rows="5"
+                                placeholder="Write your message..."></textarea>
+                        </div>
+                        <button type="submit">Send</button>
+                    </form>
                 </div>
-                <h3>Successful!</h3>
-                <p>Your query has been successfully sent to the administrator. You will be contacted as soon as possible
-                    via the e-mail you provided.</p>
-                <a href="/books.html">
-                    <button>
-                        <span class="material-symbols-outlined">arrow_back</span>
-                        <span>Go back to Shelf</span>
-                    </button>
-                </a>
+                <div class="flex-box" data-aos="fade-up" data-aos-delay="300">
+                    <div class="masonary">
+                        <div data-aos="zoom-in" data-aos-delay="300">
+                            <img src="./assets/masonary-1.jpg" alt="">
+                        </div>
+                        <div data-aos="zoom-in" data-aos-delay="300">
+                            <img src="./assets/masonary-2.jpg" alt="">
+                        </div>
+                        <div data-aos="zoom-in" data-aos-delay="300">
+                            <img src="./assets/masonary-3.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
