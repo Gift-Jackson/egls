@@ -3,7 +3,7 @@ const services = [
         id: 1,
         icon: "school",
         title: "Teacher Training",
-        content: "Basic computer skills on Microsoft Packages, computer appreciation and desktop publishing."
+        content: "Teacher training is on new methodologies of teaching early years like Montessori method of teaching, handwriting and design, jolly phonics, effective classroom management and others."
     },
     {
         id: 2,
@@ -16,6 +16,12 @@ const services = [
         icon: "accessibility_new",
         title: "Consultancy",
         content: "Our learning System also offers School owners consulting services to help develop strategies to ensure success in running."
+    },
+    {
+        id: 4,
+        icon: "computer",
+        title: "Computer Training",
+        content: "Basic computer skills on Microsoft Packages, computer appreciation and desktop publishing."
     },
 ]
 
@@ -51,9 +57,7 @@ window.addEventListener("scroll", () => {
     (window.scrollY > 100 ? header.classList.add("scoll-header") : header.classList.remove("scoll-header"));
 })
 
-//Code to update the footer year
-document.getElementById("currentYear").textContent =
-    new Date().getFullYear();
+
 
 
 

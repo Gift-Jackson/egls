@@ -310,6 +310,7 @@ header nav ul .current::before {
 article {
     margin-bottom: .5rem;
     font-size: 15px;
+    text-align: justify;
 }
 
 .about-btn {
@@ -323,7 +324,7 @@ article {
 .grid-container {
     margin: 2em 0;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 1em;
 }
 
@@ -359,6 +360,7 @@ article {
 
 .content p {
     font-size: small;
+    text-align: justify;
 }
 
 /* Newsletter */
@@ -691,5 +693,8 @@ footer p {
 @media screen and (max-width:400px){
     .slide{
         width: 90vw;
+    }
+    .grid-container{
+        grid-template-columns: repeat(1, 1fr);
     }
 }
